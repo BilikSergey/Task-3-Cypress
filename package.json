@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "cypress:open": "npx cypress open"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "cypress": "^14.2.0"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.14.0"
+  }
+}
