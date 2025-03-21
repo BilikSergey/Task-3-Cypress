@@ -1,5 +1,7 @@
-import mainPage from "../support/pages/mainPage";
-import signUpPage from "../support/pages/signUpPage";
+const mainPage = require("../pages/mainPage");
+const signUpPage = require("../pages/signUpPage");
+import testData from "../fixtures/testData.json";
+import userData from "../fixtures/userData.json";
 import { faker } from "@faker-js/faker";
 
 describe("Sign Up Test", () => {
@@ -12,13 +14,10 @@ describe("Sign Up Test", () => {
       email: faker.internet.email(),
       firstName: faker.internet.username(),
       lastName: faker.internet.username(),
-      password: "qQ1!qweqweqwe",
+      password: userData.password,
       check: true,
     });
-    cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error").should(
-      "include.text",
-      "your browser could not be authenticated via recaptcha"
-    );
+    signUpPage.errorMessageRecaptcha.should("include.text", testData.recaptcha);
   });
 
   it("Verify registration unchecked checkBox", () => {
@@ -26,13 +25,10 @@ describe("Sign Up Test", () => {
       email: faker.internet.email(),
       firstName: faker.internet.username(),
       lastName: faker.internet.username(),
-      password: "qQ1!qweqweqwe",
+      password: userData.password,
       check: false,
     });
-    cy.get("#terms_and_conditions_message").should(
-      "include.text",
-      "Please accept the terms and conditions"
-    );
+    signUpPage.errorMessageTerms.should("include.text", testData.terms);
   });
 
   it("Verify registration invalid mail", () => {
@@ -40,12 +36,9 @@ describe("Sign Up Test", () => {
       email: faker.internet.username(),
       firstName: faker.internet.username(),
       lastName: faker.internet.username(),
-      password: "qQ1!qweqweqwe",
+      password: userData.password,
       check: true,
     });
-    cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error").should(
-      "contain.text",
-      "That email and password combination is not valid, or your browser could not be authenticated via recaptcha. Please try again."
-    );
+    signUpPage.errorMessageRecaptcha.should("contain.text", testData.recaptcha);
   });
 });
