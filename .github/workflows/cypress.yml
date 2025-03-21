@@ -3,12 +3,12 @@ name: Cypress Tests
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,11 +16,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '22.13.1'
+          node-version: "22.13.1"
 
       - name: Install dependencies
         run: npm install
 
       - name: Run Cypress tests with recording
         run: npx cypress run --config-file config/cypress.config.js --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
-
