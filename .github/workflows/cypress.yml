@@ -22,4 +22,4 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests with recording
-        run: npx cypress run --config-file config/cypress.config.js --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: npx cypress run --config-file configs/cypress.config.js --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
