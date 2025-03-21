@@ -1,26 +1,32 @@
 /// <reference types="cypress" />
+import userData from "../fixtures/userData.json";
 
-const elements = {
-  inputEmail: () => cy.get('[name="email"]'),
-  inputPassword: () => cy.get('[name="password"]'),
-  buttonSubmit: () => cy.get('button[type="submit"]').eq(1),
-  errorMessageRecaptcha: () => cy.get(".MuiAlert-message.frontend-customer-portal-1xsto0d")
-};
+class LoginPage {
+  get inputEmail() {
+    return cy.get('[name="email"]');
+  }
 
-const visitLoginPage = () => {
-  cy.visit("https://portal.telnyx.com/#/login/sign-in");
-};
+  get inputPassword() {
+    return cy.get('[name="password"]');
+  }
 
-const login = () => {
-  cy.fixture("userData").then((userData) => {
-    elements.inputEmail().type(userData.email);
-    elements.inputPassword().type(userData.password);
-  });
-  elements.buttonSubmit().click();
-};
+  get buttonSubmit() {
+    return cy.get('button[type="submit"]').eq(1);
+  }
 
-export default {
-  elements,
-  visitLoginPage,
-  login,
-};
+  get errorMessageRecaptcha() {
+    return cy.get(".MuiAlert-message.frontend-customer-portal-1xsto0d");
+  }
+
+  visitLoginPage() {
+    cy.visit("https://portal.telnyx.com/#/login/sign-in");
+  }
+
+  login() {
+    this.inputEmail.type(userData.email);
+    this.inputPassword.type(userData.password);
+    this.buttonSubmit.click();
+  }
+}
+
+module.exports = new LoginPage();

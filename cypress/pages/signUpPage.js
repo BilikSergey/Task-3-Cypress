@@ -1,28 +1,51 @@
 /// <reference types="cypress" />
 
-const elements = {
-  buttonSignUp: () => cy.get('[href="/sign-up"]').first(),
-  inputEmail: () => cy.get("#email"),
-  inputFirstName: () => cy.get("#first_name"),
-  inputLastName: () => cy.get("#last_name"),
-  inputPassword: () => cy.get("#password"),
-  checkBox: () => cy.get("#terms_and_conditions"),
-  buttonSubmit: () => cy.get('button[type="submit"]').first(),
-  errorMessageRecaptcha: () => cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error"),
-  errorMessageTerms: () => cy.get("#terms_and_conditions_message")
-};
+class SignUpPage {
+  get buttonSignUp() {
+    return cy.get('[href="/sign-up"]').first();
+  }
 
-const signUp = ({ email, firstName, lastName, password, check }) => {
-  elements.buttonSignUp().click();
-  elements.inputEmail().type(email);
-  elements.inputFirstName().type(firstName);
-  elements.inputLastName().type(lastName);
-  elements.inputPassword().type(password);
-  if (check) elements.checkBox().check();
-  elements.buttonSubmit().click();
-};
+  get inputEmail() {
+    return cy.get("#email");
+  }
 
-export default {
-  elements,
-  signUp,
-};
+  get inputFirstName() {
+    return cy.get("#first_name");
+  }
+
+  get inputLastName() {
+    return cy.get("#last_name");
+  }
+
+  get inputPassword() {
+    return cy.get("#password");
+  }
+
+  get checkBox() {
+    return cy.get("#terms_and_conditions");
+  }
+
+  get buttonSubmit() {
+    return cy.get('button[type="submit"]').first();
+  }
+
+  get errorMessageRecaptcha() {
+    return cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error");
+  }
+
+  get errorMessageTerms() {
+    return cy.get("#terms_and_conditions_message");
+  }
+
+  signUp({ email, firstName, lastName, password, check }) {
+    this.buttonSignUp.click();
+    this.inputEmail.type(email);
+    this.inputFirstName.type(firstName);
+    this.inputLastName.type(lastName);
+    this.inputPassword.type(password);
+    if (check) this.checkBox.check();
+    this.buttonSubmit.click();
+  }
+}
+
+module.exports = new SignUpPage();
