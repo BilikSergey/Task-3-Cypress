@@ -4,6 +4,7 @@ const elements = {
   inputEmail: () => cy.get('[name="email"]'),
   inputPassword: () => cy.get('[name="password"]'),
   buttonSubmit: () => cy.get('button[type="submit"]').eq(1),
+  errorMessageRecaptcha: () => cy.get(".MuiAlert-message.frontend-customer-portal-1xsto0d")
 };
 
 const visitLoginPage = () => {

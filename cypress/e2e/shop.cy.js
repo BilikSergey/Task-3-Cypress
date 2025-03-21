@@ -1,4 +1,4 @@
-import shopPage from "../support/pages/shopPage";
+import shopPage from "../pages/shopPage";
 
 describe("Shop Test", () => {
   beforeEach(() => {
@@ -8,9 +8,7 @@ describe("Shop Test", () => {
 
   it("add ware to cart", () => {
     shopPage.addToCart();
-    cy.get(
-      "._1ip0g651._1ip0g650._1fragemlo._1fragem46._1fragem5z._1fragem2s"
-    ).should("exist");
+    shopPage.elements.formOfWareAtCart().should("exist");
   });
 
   it("sort by descending price", () => {
@@ -71,8 +69,8 @@ describe("Shop Test", () => {
 
   it("SWAG ALERT check", () => {
     shopPage.clickOnSwagAlert();
-    cy.get(".product__media.media.media--transparent").should("exist");
-    cy.get(".product__title").should("exist");
-    cy.get("#price-template--14828910936142__main").should("exist");
+    shopPage.elements.pictureOfWareSwagAlert().should("exist");
+    shopPage.elements.titleOfWareSwagAlert().should("exist");
+    shopPage.elements.priceOfWareSwagAlert().should("exist");
   });
 });

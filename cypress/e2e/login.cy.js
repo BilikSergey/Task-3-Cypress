@@ -1,12 +1,13 @@
-import loginPage from "../support/pages/loginPage";
+import loginPage from "../pages/loginPage";
+import testData from "../fixtures/testData.json";
 
 describe("Login Test", () => {
   it("verify recaptcha of login", () => {
     loginPage.visitLoginPage();
     loginPage.login();
-    cy.get(".MuiAlert-message.frontend-customer-portal-1xsto0d").should(
+    loginPage.elements.errorMessageRecaptcha().should(
       "contain.text",
-      "That email and password combination is not valid, or your browser could not be authenticated via recaptcha. Please try again."
+      testData.recaptcha
     );
   });
 });

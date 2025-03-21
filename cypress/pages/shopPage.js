@@ -12,7 +12,11 @@ const elements = {
   titleList: () => cy.get(".card__heading.h5"),
   titleSwagAlert: () =>
     cy.get(".announcement-bar__link.link.link--text.focus-inset.animate-arrow"),
-};
+  formOfWareAtCart: () => cy.get("._1ip0g651._1ip0g650._1fragemlt._1fragem46._1fragem5z._1fragem2s"),
+  pictureOfWareSwagAlert: () => cy.get(".product__media.media.media--transparent"),
+  titleOfWareSwagAlert: () => cy.get(".product__title"),
+  priceOfWareSwagAlert: () => cy.get("#price-template--14828910936142__main")
+}
 
 const visitShopPage = () => {
   cy.visit("https://shop.telnyx.com/");

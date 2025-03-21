@@ -8,6 +8,8 @@ const elements = {
   inputPassword: () => cy.get("#password"),
   checkBox: () => cy.get("#terms_and_conditions"),
   buttonSubmit: () => cy.get('button[type="submit"]').first(),
+  errorMessageRecaptcha: () => cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error"),
+  errorMessageTerms: () => cy.get("#terms_and_conditions_message")
 };
 
 const signUp = ({ email, firstName, lastName, password, check }) => {

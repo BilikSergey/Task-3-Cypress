@@ -1,5 +1,7 @@
-import mainPage from "../support/pages/mainPage";
-import signUpPage from "../support/pages/signUpPage";
+import mainPage from "../pages/mainPage";
+import signUpPage from "../pages/signUpPage";
+import testData from "../fixtures/testData.json";
+import userData from "../fixtures/userData.json";
 import { faker } from "@faker-js/faker";
 
 describe("Sign Up Test", () => {
@@ -12,12 +14,12 @@ describe("Sign Up Test", () => {
       email: faker.internet.email(),
       firstName: faker.internet.username(),
       lastName: faker.internet.username(),
-      password: "qQ1!qweqweqwe",
+      password: userData.password,
       check: true,
     });
-    cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error").should(
+    signUpPage.elements.errorMessageRecaptcha().should(
       "include.text",
-      "your browser could not be authenticated via recaptcha"
+      testData.recaptcha
     );
   });
 
@@ -26,12 +28,12 @@ describe("Sign Up Test", () => {
       email: faker.internet.email(),
       firstName: faker.internet.username(),
       lastName: faker.internet.username(),
-      password: "qQ1!qweqweqwe",
+      password: userData.password,
       check: false,
     });
-    cy.get("#terms_and_conditions_message").should(
+    signUpPage.elements.errorMessageTerms().should(
       "include.text",
-      "Please accept the terms and conditions"
+      testData.terms
     );
   });
 
@@ -40,12 +42,10 @@ describe("Sign Up Test", () => {
       email: faker.internet.username(),
       firstName: faker.internet.username(),
       lastName: faker.internet.username(),
-      password: "qQ1!qweqweqwe",
+      password: userData.password,
       check: true,
     });
-    cy.get(".c-UUKrH.c-UUKrH-kDyeyw-type-error").should(
-      "contain.text",
-      "That email and password combination is not valid, or your browser could not be authenticated via recaptcha. Please try again."
-    );
-  });
+    signUpPage.elements.errorMessageRecaptcha()
+      .should("contain.text", testData.recaptcha);
+    })
 });
