@@ -51,6 +51,36 @@ class ShopPage {
     return cy.get("#price-template--14828910936142__main");
   }
 
+  get buttonSearch() {
+    return cy.get(".modal__toggle-open.icon.icon-search");
+  }
+
+  get inputSearch() {
+    return cy.get("#Search-In-Modal");
+  }
+
+  get wareHat() {
+    return cy.get(
+      '[href="/products/telnyx-classic-hat?_pos=1&_sid=49e3d99ce&_ss=r"]'
+    );
+  }
+
+  get searchResult() {
+    return cy.get("#ProductCountDesktop");
+  }
+
+  get cartDeleteButton() {
+    return cy.get(".icon.icon-remove");
+  }
+
+  get cartEmptyText() {
+    return cy.get(".cart__empty-text");
+  }
+
+  get buttonContinueShopping() {
+    return cy.get(".drawer__close");
+  }
+
   visitShopPage() {
     cy.visit("https://shop.telnyx.com/");
   }
@@ -82,6 +112,17 @@ class ShopPage {
 
   clickOnSwagAlert() {
     this.titleSwagAlert.click();
+  }
+
+  deleteWareAtCart() {
+    this.buttonAddToCart.click();
+    this.cartDeleteButton.click();
+  }
+
+  searchHat() {
+    this.buttonSearch.click();
+    this.inputSearch.type("hat");
+    this.inputSearch.type("{enter}");
   }
 }
 

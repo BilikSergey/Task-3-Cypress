@@ -1,14 +1,26 @@
 const { defineConfig } = require("cypress");
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const {
+  addCucumberPreprocessorPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor");
+const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 
 module.exports = defineConfig({
-  projectId: "4uhbkt",
   chromeWebSecurity: false,
-  viewportWidth: 1200,
-  viewportHeight: 1920,
+  viewportWidth: 660,
+  viewportHeight: 1000,
   e2e: {
-    baseUrl: "https://telnyx.com",
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+    specPattern: "cypress/e2e/features/*.feature",
+    async setupNodeEvents(on, config) {
+      await addCucumberPreprocessorPlugin(on, config);
+      const preprocessor = createEsbuildPlugin.default || createEsbuildPlugin;
+      on(
+        "file:preprocessor",
+        createBundler({
+          plugins: [preprocessor(config)],
+        })
+      );
+      return config;
     },
   },
 });

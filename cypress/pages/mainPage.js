@@ -2,7 +2,7 @@
 
 class MainPage {
   visitMainPage() {
-    cy.visit("/use-cases/ai-and-machine-learning");
+    cy.visit("https://telnyx.com/");
   }
 }
 
