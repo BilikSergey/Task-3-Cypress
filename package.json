@@ -6,9 +6,10 @@
     "test:firefox": "cypress run --browser firefox --config-file configs/cypress.config.js",
     "test:edge": "cypress run --browser edge --config-file configs/cypress.config.js",
     "test:special:resolution": "cypress run --config-file  configs/cypress-laptop.config.js",
-    "test:login:run": "cypress run --spec cypress/e2e/login.cy.js --config-file configs/cypress.config.js",
-    "test:shop:run": "cypress run --spec cypress/e2e/shop.cy.js --config-file configs/cypress.config.js",
-    "test:signUp:run": "cypress run --spec cypress/e2e/signUp.cy.js --config-file configs/cypress.config.js",
+    "test:login:run": "cypress run --spec cypress/e2e/features/login.feature --config-file configs/cypress.config.js",
+    "test:mainFunctions:run": "cypress run --spec cypress/e2e/features/mainFunctions.feature --config-file configs/cypress.config.js",
+    "test:shop:run": "cypress run --spec cypress/e2e/features/shop.feature --config-file configs/cypress.config.js",
+    "test:signUp:run": "cypress run --spec cypress/e2e/features/signUp.feature --config-file configs/cypress.config.js",
     "cleancache": "rm -rf node_modules/.cache"
   },
   "devDependencies": {
